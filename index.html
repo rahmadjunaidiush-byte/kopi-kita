@@ -435,6 +435,271 @@ img {
   background: var(--bg);
 }
 
+.home-cart-button,
+.home-add-to-cart,
+.home-checkout-button {
+  border: 0;
+  border-radius: 6px;
+  background: var(--brown);
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+}
+
+.home-cart-button {
+  padding: 8px 12px;
+  white-space: nowrap;
+}
+
+.home-cart-count {
+  display: inline-grid;
+  min-width: 22px;
+  height: 22px;
+  margin-left: 4px;
+  padding: 0 5px;
+  place-items: center;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--brown);
+  font-size: 0.75rem;
+}
+
+.home-menu {
+  padding: 64px 0;
+  background: #f7f2eb;
+}
+
+.home-menu-heading {
+  margin: 0;
+  color: var(--brown);
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  text-align: center;
+}
+
+.home-menu-intro {
+  max-width: 620px;
+  margin: 10px auto 28px;
+  color: #715f50;
+  text-align: center;
+}
+
+.home-menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.home-menu-card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 12px 30px var(--shadow);
+}
+
+.home-menu-card > img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+}
+
+.home-menu-copy {
+  padding: 20px;
+}
+
+.home-menu-copy .menu-label {
+  margin: 0 0 8px;
+  color: #a3652f;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.home-menu-copy h3 {
+  margin: 0;
+  color: var(--brown);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+}
+
+.home-menu-copy > p:not(.menu-label, .menu-price) {
+  min-height: 3.2em;
+  margin: 8px 0 0;
+  color: #715f50;
+  font-size: 0.9rem;
+}
+
+.home-menu-copy .menu-price {
+  margin: 12px 0 0;
+  color: var(--brown);
+  font-weight: 600;
+}
+
+.home-add-to-cart {
+  width: 100%;
+  margin-top: 12px;
+  padding: 11px 14px;
+}
+
+.home-cart-button:hover,
+.home-add-to-cart:hover,
+.home-checkout-button:hover {
+  background: #4a2918;
+}
+
+.home-cart-button:focus-visible,
+.home-add-to-cart:focus-visible,
+.home-checkout-button:focus-visible,
+.home-cart-close:focus-visible,
+.cart-quantity button:focus-visible {
+  outline: 3px solid #d9a65f;
+  outline-offset: 3px;
+}
+
+.cart-dialog {
+  width: min(520px, calc(100% - 28px));
+  max-height: min(80vh, 720px);
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--ink);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.24);
+}
+
+.cart-dialog::backdrop {
+  background: rgba(26, 20, 16, 0.55);
+}
+
+.home-cart-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.home-cart-header p {
+  margin: 0 0 4px;
+  color: #a3652f;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.home-cart-header h2 {
+  margin: 0;
+  color: var(--brown);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+}
+
+.home-cart-close {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--brown);
+  cursor: pointer;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.cart-status {
+  min-height: 1.5em;
+  margin: 12px 0;
+  color: #715f50;
+  font-size: 0.85rem;
+}
+
+.cart-items {
+  display: grid;
+  max-height: 36vh;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.cart-item-name {
+  margin: 0;
+  color: var(--brown);
+  font-weight: 600;
+}
+
+.cart-item-price {
+  margin: 2px 0 0;
+  color: #715f50;
+  font-size: 0.84rem;
+}
+
+.cart-quantity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.cart-quantity button {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--brown);
+  cursor: pointer;
+  font: inherit;
+  font-size: 1.1rem;
+}
+
+.cart-empty {
+  padding: 18px 0;
+  color: #715f50;
+}
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  margin: 18px 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.cart-total strong {
+  color: var(--brown);
+}
+
+.home-checkout-button {
+  display: block;
+  padding: 12px 16px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.home-checkout-button[aria-disabled="true"] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.home-cart-note {
+  margin: 12px 0 0;
+  color: #715f50;
+  font-size: 0.78rem;
+}
+
 .testimonials h2 {
   margin: 0 0 10px;
   color: var(--brown);
@@ -639,7 +904,8 @@ footer {
   .cols,
   .jam .wrap,
   .tim .wrap,
-  .testimonials-grid {
+  .testimonials-grid,
+  .home-menu-grid {
     grid-template-columns: 1fr;
   }
 
@@ -715,6 +981,18 @@ footer {
     padding: 7px 8px;
     font-size: 0.76rem;
   }
+
+  .home-menu {
+    padding: 48px 0;
+  }
+
+  .home-menu-card > img {
+    height: 190px;
+  }
+
+  .cart-dialog {
+    padding: 20px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -748,6 +1026,9 @@ footer {
       <a href="promo.html">Promo</a>
       <a href="tentang.html">Tentang Kami</a>
       <a href="menu.html">Menu</a>
+      <button class="home-cart-button" type="button" data-open-cart aria-haspopup="dialog">
+        Keranjang <span class="home-cart-count" data-cart-count>0</span>
+      </button>
     </nav>
     <a class="header-contact" href="https://wa.me/6289527907852?text=Halo%20Kopi%20Kita" target="_blank" rel="noreferrer">WhatsApp <span>0895-2790-7852</span></a>
   </div>
@@ -758,6 +1039,45 @@ footer {
   <div class="script">Teman Cerita</div>
   <p>Secangkir kopi untuk menemani pagi, sore, maupun cerita yang tak ingin kamu simpan sendiri.</p>
 </div></section>
+
+<section class="home-menu" aria-labelledby="home-menu-title">
+  <div class="wrap">
+    <h2 class="home-menu-heading" id="home-menu-title">Pilih Kopi Favoritmu</h2>
+    <p class="home-menu-intro">Pilih racikan yang menemani ceritamu. Tambahkan ke keranjang untuk melihat jumlah dan total pesanan.</p>
+    <div class="home-menu-grid">
+      <article class="home-menu-card" data-product-id="kopi-susu-teman" data-product-name="Kopi Susu Teman" data-product-price="18000">
+        <img src="images/hero.jpg" alt="Es kopi susu dengan lapisan susu dan kopi" loading="lazy">
+        <div class="home-menu-copy">
+          <p class="menu-label">Kopi susu</p>
+          <h3>Kopi Susu Teman</h3>
+          <p>Espresso, susu, dan sentuhan manis untuk menemani obrolan santai.</p>
+          <p class="menu-price">Rp18.000</p>
+          <button class="home-add-to-cart" type="button" data-add-to-cart>Tambah ke keranjang</button>
+        </div>
+      </article>
+      <article class="home-menu-card" data-product-id="kopi-hitam-cerita" data-product-name="Kopi Hitam Cerita" data-product-price="15000">
+        <img src="images/cafe.jpg" alt="Kopi hitam di suasana kedai yang hangat" loading="lazy">
+        <div class="home-menu-copy">
+          <p class="menu-label">Kopi klasik</p>
+          <h3>Kopi Hitam Cerita</h3>
+          <p>Rasa kopi yang mantap dan sederhana, pas dinikmati hangat atau dingin.</p>
+          <p class="menu-price">Rp15.000</p>
+          <button class="home-add-to-cart" type="button" data-add-to-cart>Tambah ke keranjang</button>
+        </div>
+      </article>
+      <article class="home-menu-card" data-product-id="cokelat-hangat" data-product-name="Cokelat Hangat" data-product-price="20000">
+        <img src="images/poster.jpg" alt="Minuman cokelat hangat dengan suasana nyaman" loading="lazy">
+        <div class="home-menu-copy">
+          <p class="menu-label">Non-kopi</p>
+          <h3>Cokelat Hangat</h3>
+          <p>Minuman cokelat lembut sebagai pilihan nyaman tanpa kopi.</p>
+          <p class="menu-price">Rp20.000</p>
+          <button class="home-add-to-cart" type="button" data-add-to-cart>Tambah ke keranjang</button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
 
 <section class="suasana"><div class="wrap">
   <h2 data-reveal>Suasana Di Kopi Kita</h2>
@@ -862,6 +1182,25 @@ footer {
     </div>
   </div>
 </footer>
+<dialog class="cart-dialog" data-cart-dialog aria-labelledby="home-cart-title">
+  <div class="home-cart-header">
+    <div>
+      <p>Pesananmu</p>
+      <h2 id="home-cart-title">Keranjang</h2>
+    </div>
+    <button class="home-cart-close" type="button" data-close-cart aria-label="Tutup keranjang">×</button>
+  </div>
+  <p class="cart-status" data-cart-status role="status" aria-live="polite"></p>
+  <ul class="cart-items" data-cart-items></ul>
+  <p class="cart-empty" data-cart-empty>Keranjang masih kosong. Yuk pilih kopi favoritmu.</p>
+  <div class="cart-total">
+    <span>Total</span>
+    <strong data-cart-total>Rp0</strong>
+  </div>
+  <a class="home-checkout-button" data-checkout href="https://wa.me/6289527907852" target="_blank" rel="noreferrer" aria-disabled="true">Pesan via WhatsApp</a>
+  <p class="home-cart-note">Pesanan dan harga final dikonfirmasi langsung oleh Kopi Kita melalui WhatsApp.</p>
+</dialog>
+<script src="cart.js" defer></script>
 <script>
   if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     document.documentElement.classList.add('motion-ready');
