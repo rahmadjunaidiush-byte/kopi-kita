@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Lihat inspirasi menu kopi dan minuman Kopi Kita Teman Cerita.">
+  <title>Menu Kopi Kita | Kopi Kita</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-logo" href="index.html">Kopi Kita</a>
+    <nav class="site-nav" aria-label="Navigasi utama">
+      <a href="ulasan.html">Ulasan Pelanggan</a>
+      <a href="promo.html">Promo Kopi Kita</a>
+      <a href="tentang.html">Tentang Kopi Kita</a>
+      <a href="menu.html" aria-current="page">Menu Kopi Kita</a>
+      <button class="cart-trigger" type="button" data-open-cart aria-haspopup="dialog">
+        Keranjang <span class="cart-count" data-cart-count>0</span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="page-hero-copy">
+        <p class="eyebrow">Racikan untuk setiap suasana</p>
+        <h1>Temukan teman di cangkirmu.</h1>
+        <p>Dari kopi yang akrab sampai minuman segar, pilih yang paling pas untuk menemani ceritamu.</p>
+      </div>
+      <img src="images/hero.jpg" alt="Kopi susu dan kopi hitam di meja">
+    </section>
+
+    <section class="content-section">
+      <div class="content-inner">
+        <p class="eyebrow">Menu pilihan</p>
+        <h2 class="section-heading">Pilih tegukan favoritmu</h2>
+        <p class="section-intro">Pilih menu untuk dimasukkan ke keranjang. Harga yang tampil saat ini adalah harga contoh dan perlu disesuaikan dengan harga resmi kedai.</p>
+        <div class="card-grid">
+          <article class="content-card menu-card" data-product-id="kopi-susu-teman" data-product-name="Kopi Susu Teman" data-product-price="18000">
+            <img src="images/hero.jpg" alt="Es kopi susu dengan lapisan susu dan kopi">
+            <div class="card-copy">
+              <span class="card-label">Kopi susu</span>
+              <h3>Kopi Susu Teman</h3>
+              <p>Espresso, susu, dan sentuhan manis untuk menemani obrolan santai.</p>
+              <p class="price">Rp18.000 <span class="sample-price">harga contoh</span></p>
+              <button class="add-to-cart" type="button" data-add-to-cart>Tambah ke keranjang</button>
+            </div>
+          </article>
+          <article class="content-card menu-card" data-product-id="kopi-hitam-cerita" data-product-name="Kopi Hitam Cerita" data-product-price="15000">
+            <img src="images/cafe.jpg" alt="Suasana menikmati kopi hangat di kedai">
+            <div class="card-copy">
+              <span class="card-label">Kopi klasik</span>
+              <h3>Kopi Hitam Cerita</h3>
+              <p>Rasa kopi yang mantap dan sederhana, pas dinikmati hangat atau dingin.</p>
+              <p class="price">Rp15.000 <span class="sample-price">harga contoh</span></p>
+              <button class="add-to-cart" type="button" data-add-to-cart>Tambah ke keranjang</button>
+            </div>
+          </article>
+          <article class="content-card menu-card" data-product-id="cokelat-hangat" data-product-name="Cokelat Hangat" data-product-price="20000">
+            <img src="images/poster.jpg" alt="Nuansa hangat untuk minuman pilihan">
+            <div class="card-copy">
+              <span class="card-label">Non-kopi</span>
+              <h3>Cokelat Hangat</h3>
+              <p>Minuman cokelat lembut sebagai pilihan nyaman tanpa kopi.</p>
+              <p class="price">Rp20.000 <span class="sample-price">harga contoh</span></p>
+              <button class="add-to-cart" type="button" data-add-to-cart>Tambah ke keranjang</button>
+            </div>
+          </article>
+        </div>
+        <p class="notice">Informasi alergen dan ketersediaan menu dapat ditanyakan langsung kepada staf Kopi Kita.</p>
+      </div>
+    </section>
+
+    <dialog class="cart-dialog" data-cart-dialog aria-labelledby="cart-title">
+      <div class="cart-header">
+        <div>
+          <p class="eyebrow">Pesananmu</p>
+          <h2 class="section-heading" id="cart-title">Keranjang</h2>
+        </div>
+        <button class="cart-close" type="button" data-close-cart aria-label="Tutup keranjang">×</button>
+      </div>
+      <p class="cart-status" data-cart-status role="status" aria-live="polite"></p>
+      <ul class="cart-items" data-cart-items></ul>
+      <p class="cart-empty" data-cart-empty>Keranjang masih kosong. Yuk pilih kopi favoritmu.</p>
+      <div class="cart-total">
+        <span>Total</span>
+        <strong data-cart-total>Rp0</strong>
+      </div>
+      <a class="checkout-button" data-checkout href="https://wa.me/6289527907852" target="_blank" rel="noreferrer" aria-disabled="true">Pesan via WhatsApp</a>
+      <p class="cart-note">Pesanan dan harga final dikonfirmasi langsung oleh Kopi Kita melalui WhatsApp.</p>
+    </dialog>
+  </main>
+
+  <footer class="site-footer">
+    <p>Kopi Kita — teman cerita di setiap gelas. <a href="index.html">Kembali ke beranda</a></p>
+  </footer>
+  <script src="cart.js" defer></script>
+</body>
+</html>
