@@ -3,12 +3,867 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Cerita dan contoh ulasan tentang suasana Kopi Kita Teman Cerita.">
+  <meta name="description" content="Bagikan cerita dan pengalamanmu menikmati kopi di Kopi Kita.">
   <title>Ulasan Pelanggan | Kopi Kita</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="pages.css">
+  <style>
+    :root {
+      --review-cream: #f7f1e8;
+      --review-paper: #fffdfa;
+      --review-coffee: #432b1d;
+      --review-roast: #2e2018;
+      --review-muted: #806f61;
+      --review-gold: #b98542;
+      --review-line: #e7ddd0;
+      --review-shadow: 0 24px 70px rgba(58, 38, 23, 0.1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--review-paper);
+      color: var(--review-roast);
+      font-family: 'DM Sans', 'Outfit', system-ui, sans-serif;
+    }
+
+    .site-header {
+      position: relative;
+      max-width: 1200px;
+      padding: 18px 32px;
+      border-bottom: 1px solid rgba(231, 221, 208, 0.72);
+    }
+
+    .site-logo {
+      color: var(--review-coffee);
+      font-size: 1.5rem;
+    }
+
+    .site-nav {
+      gap: 8px;
+    }
+
+    .site-nav a {
+      padding: 8px 11px;
+      border-radius: 999px;
+      transition: background-color 180ms ease, color 180ms ease;
+    }
+
+    .site-nav a:hover,
+    .site-nav a[aria-current="page"] {
+      background: var(--review-cream);
+      color: var(--review-coffee);
+      text-decoration: none;
+    }
+
+    .site-nav a:focus-visible,
+    .site-logo:focus-visible,
+    .hero-link:focus-visible {
+      outline: 3px solid rgba(185, 133, 66, 0.55);
+      outline-offset: 3px;
+    }
+
+    .reviews-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+      align-items: center;
+      gap: clamp(36px, 7vw, 88px);
+      max-width: 1200px;
+      min-height: 570px;
+      margin: 0 auto;
+      padding: 68px 32px 76px;
+    }
+
+    .hero-copy {
+      animation: rise-in 650ms ease both;
+    }
+
+    .hero-eyebrow,
+    .section-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      color: var(--review-gold);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .hero-eyebrow::before,
+    .section-eyebrow::before {
+      width: 28px;
+      height: 1px;
+      background: currentColor;
+      content: "";
+    }
+
+    .hero-copy h1 {
+      max-width: 580px;
+      margin: 0;
+      color: var(--review-coffee);
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(3rem, 5.4vw, 5.2rem);
+      font-weight: 500;
+      letter-spacing: -0.045em;
+      line-height: 1.04;
+    }
+
+    .hero-copy h1 em {
+      color: var(--review-gold);
+      font-weight: 500;
+    }
+
+    .hero-description {
+      max-width: 420px;
+      margin: 24px 0 0;
+      color: var(--review-muted);
+      font-size: 1.02rem;
+      line-height: 1.8;
+    }
+
+    .hero-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 30px;
+      padding: 13px 19px;
+      border: 1px solid var(--review-coffee);
+      border-radius: 999px;
+      color: var(--review-coffee);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+    }
+
+    .hero-link:hover {
+      transform: translateY(-2px);
+      background: var(--review-coffee);
+      color: #fffdfa;
+    }
+
+    .hero-link span {
+      color: var(--review-gold);
+      font-size: 1.1rem;
+    }
+
+    .hero-photo {
+      position: relative;
+      min-width: 0;
+      margin: 0;
+      padding: 0 0 22px 22px;
+      animation: rise-in 750ms 100ms ease both;
+    }
+
+    .hero-photo::before {
+      position: absolute;
+      inset: 22px 22px 0 0;
+      border: 1px solid #d6bd98;
+      border-radius: 18px;
+      content: "";
+    }
+
+    .hero-photo img {
+      position: relative;
+      width: 100%;
+      height: clamp(340px, 39vw, 470px);
+      border-radius: 14px;
+      object-fit: cover;
+      object-position: center;
+      box-shadow: var(--review-shadow);
+      transition: transform 500ms ease;
+    }
+
+    .hero-photo:hover img {
+      transform: translate(-4px, -4px);
+    }
+
+    .hero-photo figcaption {
+      position: absolute;
+      right: 2px;
+      bottom: 1px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--review-muted);
+      font-size: 0.73rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .hero-photo figcaption::before {
+      width: 18px;
+      height: 1px;
+      background: var(--review-gold);
+      content: "";
+    }
+
+    .review-section {
+      padding: 84px 32px 100px;
+      background: var(--review-cream);
+    }
+
+    .review-layout {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1.18fr);
+      align-items: start;
+      gap: clamp(32px, 6vw, 76px);
+      max-width: 1136px;
+      margin: 0 auto;
+    }
+
+    .review-intro {
+      position: sticky;
+      top: 28px;
+    }
+
+    .review-intro h2 {
+      margin: 0;
+      color: var(--review-coffee);
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2.2rem, 4vw, 3.25rem);
+      font-weight: 500;
+      letter-spacing: -0.035em;
+      line-height: 1.12;
+    }
+
+    .review-intro > p:last-child {
+      max-width: 350px;
+      margin: 18px 0 0;
+      color: var(--review-muted);
+      line-height: 1.8;
+    }
+
+    .review-form {
+      padding: clamp(24px, 4vw, 42px);
+      border: 1px solid rgba(231, 221, 208, 0.9);
+      border-radius: 16px;
+      background: var(--review-paper);
+      box-shadow: 0 18px 54px rgba(58, 38, 23, 0.08);
+    }
+
+    .review-form h3,
+    .reviews-heading {
+      margin: 0;
+      color: var(--review-coffee);
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.65rem;
+      font-weight: 500;
+    }
+
+    .form-caption {
+      margin: 8px 0 26px;
+      color: var(--review-muted);
+      font-size: 0.88rem;
+      line-height: 1.65;
+    }
+
+    .review-fields {
+      display: grid;
+      gap: 19px;
+    }
+
+    .review-fields > label,
+    .rating-field legend {
+      color: var(--review-coffee);
+      font-size: 0.84rem;
+      font-weight: 600;
+    }
+
+    .review-fields > label > input,
+    .review-fields > label > textarea {
+      display: block;
+      width: 100%;
+      margin-top: 8px;
+      padding: 13px 15px;
+      border: 1px solid var(--review-line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--review-roast);
+      font: inherit;
+      font-size: 0.92rem;
+      transition: border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .review-fields > label > input::placeholder,
+    .review-fields > label > textarea::placeholder {
+      color: #aa9b8d;
+    }
+
+    .review-fields > label > input:focus,
+    .review-fields > label > textarea:focus {
+      border-color: var(--review-gold);
+      outline: 0;
+      box-shadow: 0 0 0 3px rgba(185, 133, 66, 0.14);
+    }
+
+    .review-fields textarea {
+      min-height: 132px;
+      resize: vertical;
+    }
+
+    .rating-field {
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    .rating-field legend {
+      margin-bottom: 9px;
+      padding: 0;
+    }
+
+    .rating-options {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .rating-options input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    .rating-options label {
+      padding: 2px;
+      color: #d7cbbb;
+      cursor: pointer;
+      font-size: 1.9rem;
+      line-height: 1;
+      transition: color 140ms ease, transform 140ms ease;
+    }
+
+    .rating-options label.is-selected,
+    .rating-options label.is-preview {
+      color: var(--review-gold);
+    }
+
+    .rating-options label:hover {
+      transform: translateY(-2px);
+    }
+
+    .rating-options input:focus-visible + label {
+      border-radius: 4px;
+      outline: 2px solid var(--review-gold);
+      outline-offset: 2px;
+    }
+
+    .submit-review {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 12px 22px;
+      border: 0;
+      border-radius: 8px;
+      background: var(--review-coffee);
+      color: #fffdfa;
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+    }
+
+    .submit-review::after {
+      color: #dfbd84;
+      content: "→";
+      font-size: 1.1rem;
+    }
+
+    .submit-review:hover {
+      transform: translateY(-2px);
+      background: #5a3925;
+      box-shadow: 0 8px 20px rgba(67, 43, 29, 0.18);
+    }
+
+    .submit-review:focus-visible {
+      outline: 3px solid rgba(185, 133, 66, 0.6);
+      outline-offset: 3px;
+    }
+
+    .review-status {
+      min-height: 1.5em;
+      margin: 0;
+      color: var(--review-coffee);
+      font-size: 0.83rem;
+      line-height: 1.5;
+    }
+
+    .review-status.is-error {
+      color: #9c3d2c;
+    }
+
+    .review-storage-note {
+      margin: 18px 0 0;
+      color: var(--review-muted);
+      font-size: 0.76rem;
+      line-height: 1.6;
+    }
+
+    .customer-reviews {
+      margin-top: 36px;
+      padding: 26px;
+      border: 1px solid rgba(231, 221, 208, 0.9);
+      border-radius: 16px;
+      background: var(--review-paper);
+      box-shadow: 0 14px 38px rgba(58, 38, 23, 0.06);
+    }
+
+    .reviews-heading {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin-bottom: 16px;
+      font-size: 1.75rem;
+    }
+
+    .reviews-heading::before {
+      width: 3px;
+      height: 25px;
+      border-radius: 3px;
+      background: var(--review-gold);
+      content: "";
+    }
+
+    .review-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .review-empty {
+      margin: 0;
+      padding: 22px;
+      border: 1px dashed #d5c6b3;
+      border-radius: 12px;
+      background: #fcf8f1;
+      color: var(--review-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    .review-card {
+      padding: 20px 22px;
+      border: 1px solid rgba(231, 221, 208, 0.9);
+      border-radius: 12px;
+      background: var(--review-paper);
+      box-shadow: 0 10px 28px rgba(58, 38, 23, 0.055);
+      animation: rise-in 420ms ease both;
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+    }
+
+    .review-card:hover {
+      transform: translateY(-2px);
+      border-color: #dac9b2;
+      box-shadow: 0 14px 30px rgba(58, 38, 23, 0.08);
+    }
+
+    .review-card-header {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .review-avatar {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      flex: 0 0 auto;
+      place-items: center;
+      border: 1px solid #e8d7ba;
+      border-radius: 50%;
+      background: #f5ead9;
+      color: var(--review-coffee);
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.1rem;
+    }
+
+    .review-author {
+      min-width: 0;
+      margin: 0;
+      color: var(--review-coffee);
+      font-size: 0.96rem;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .review-date {
+      display: block;
+      margin-top: 3px;
+      color: var(--review-muted);
+      font-size: 0.75rem;
+    }
+
+    .review-card .rating {
+      margin: 16px 0 8px;
+      color: var(--review-gold);
+      font-size: 1rem;
+      letter-spacing: 0.12em;
+    }
+
+    .review-summary {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 0 0 18px;
+    }
+
+    .review-summary p {
+      margin: 0;
+      padding: 12px 14px;
+      border: 1px solid var(--review-line);
+      border-radius: 10px;
+      background: var(--review-cream);
+      color: var(--review-muted);
+      font-size: 0.76rem;
+    }
+
+    .review-summary strong {
+      display: block;
+      margin-top: 4px;
+      color: var(--review-coffee);
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .review-connection {
+      margin: 12px 0 0;
+      color: var(--review-muted);
+      font-size: 0.8rem;
+      line-height: 1.6;
+    }
+
+    .review-connection.is-error {
+      color: #9c3d2c;
+    }
+
+    .admin-panel {
+      margin-top: 24px;
+      overflow: hidden;
+      border: 1px solid var(--review-line);
+      border-radius: 14px;
+      background: var(--review-paper);
+      box-shadow: 0 8px 24px rgba(58, 38, 23, 0.045);
+    }
+
+    .admin-panel summary {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 16px 18px;
+      color: var(--review-coffee);
+      cursor: pointer;
+      list-style: none;
+      transition: background-color 160ms ease;
+    }
+
+    .admin-panel summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .admin-panel summary:hover {
+      background: #fcf8f1;
+    }
+
+    .admin-panel summary:focus-visible {
+      outline: 3px solid rgba(185, 133, 66, 0.5);
+      outline-offset: -3px;
+    }
+
+    .admin-mark {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      flex: 0 0 auto;
+      place-items: center;
+      border: 1px solid #e8d7ba;
+      border-radius: 50%;
+      background: var(--review-cream);
+      color: var(--review-coffee);
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .admin-summary-copy {
+      display: grid;
+      gap: 3px;
+    }
+
+    .admin-summary-copy strong {
+      font-size: 0.88rem;
+    }
+
+    .admin-summary-copy small {
+      color: var(--review-muted);
+      font-size: 0.76rem;
+    }
+
+    .admin-chevron {
+      margin-left: auto;
+      color: var(--review-gold);
+      font-size: 1.15rem;
+      transition: transform 160ms ease;
+    }
+
+    .admin-panel[open] .admin-chevron {
+      transform: rotate(180deg);
+    }
+
+    .admin-panel[open] summary {
+      border-bottom: 1px solid var(--review-line);
+    }
+
+    .admin-panel-body {
+      padding: 20px;
+    }
+
+    .admin-panel-intro {
+      margin: 0 0 18px;
+      color: var(--review-muted);
+      font-size: 0.82rem;
+      line-height: 1.6;
+    }
+
+    .admin-panel label {
+      display: block;
+      color: var(--review-coffee);
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .admin-panel input {
+      display: block;
+      width: 100%;
+      min-height: 46px;
+      margin-top: 7px;
+      padding: 11px 13px;
+      border: 1px solid var(--review-line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--review-roast);
+      font: inherit;
+    }
+
+    .admin-panel input:focus {
+      border-color: var(--review-gold);
+      outline: 0;
+      box-shadow: 0 0 0 3px rgba(185, 133, 66, 0.14);
+    }
+
+    .admin-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .admin-login-button,
+    .admin-logout-button {
+      min-height: 44px;
+      padding: 10px 15px;
+      border: 1px solid var(--review-coffee);
+      border-radius: 8px;
+      background: var(--review-coffee);
+      color: #fffdfa;
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .admin-login-button {
+      width: 100%;
+      transition: background-color 160ms ease, transform 160ms ease;
+    }
+
+    .admin-login-button:hover:not(:disabled) {
+      transform: translateY(-1px);
+      background: #5a3925;
+    }
+
+    .admin-logout-button {
+      margin-top: 16px;
+      background: transparent;
+      color: var(--review-coffee);
+    }
+
+    .admin-status {
+      margin-top: 10px;
+    }
+
+    .delete-review {
+      margin-top: 18px;
+      padding: 8px 12px;
+      border: 1px solid #c78673;
+      border-radius: 7px;
+      background: transparent;
+      color: #8d3c2b;
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.78rem;
+      font-weight: 600;
+      transition: background-color 160ms ease, color 160ms ease;
+    }
+
+    .delete-review:hover {
+      background: #8d3c2b;
+      color: #fff;
+    }
+
+    .admin-login-button:focus-visible,
+    .admin-logout-button:focus-visible,
+    .delete-review:focus-visible {
+      outline: 3px solid rgba(185, 133, 66, 0.6);
+      outline-offset: 3px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    .review-comment {
+      margin: 0;
+      color: #65564a;
+      font-size: 0.9rem;
+      line-height: 1.75;
+      overflow-wrap: anywhere;
+      white-space: pre-wrap;
+    }
+
+    @keyframes rise-in {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .site-header {
+        gap: 12px;
+        padding: 16px 20px;
+      }
+
+      .site-nav {
+        gap: 6px 10px;
+      }
+
+      .site-nav a {
+        padding: 6px 9px;
+        font-size: 0.82rem;
+      }
+
+      .reviews-hero {
+        grid-template-columns: 1fr;
+        gap: 34px;
+        min-height: 0;
+        padding: 54px 20px 58px;
+      }
+
+      .hero-copy h1 {
+        font-size: clamp(3rem, 12vw, 4.5rem);
+      }
+
+      .hero-photo {
+        padding: 0 0 19px 14px;
+      }
+
+      .hero-photo::before {
+        inset: 14px 14px 0 0;
+      }
+
+      .hero-photo img {
+        height: clamp(260px, 72vw, 390px);
+      }
+
+      .hero-photo figcaption {
+        right: 0;
+        font-size: 0.65rem;
+      }
+
+      .review-section {
+        padding: 60px 20px 72px;
+      }
+
+      .review-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .review-intro {
+        position: static;
+      }
+
+      .review-intro > p:last-child {
+        margin-top: 12px;
+      }
+
+      .review-form {
+        padding: 24px 20px;
+      }
+
+      .submit-review {
+        width: 100%;
+      }
+
+      .review-summary {
+        gap: 8px;
+      }
+
+      .customer-reviews {
+        margin-top: 28px;
+        padding: 20px 16px;
+      }
+
+      .review-summary p {
+        padding: 11px 10px;
+        font-size: 0.72rem;
+      }
+
+      .review-card {
+        padding: 18px;
+      }
+
+      .admin-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .admin-login-button,
+      .admin-logout-button {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -22,50 +877,105 @@
   </header>
 
   <main>
-    <section class="page-hero">
-      <div class="page-hero-copy">
-        <p class="eyebrow">Cerita dari meja ke meja</p>
-        <h1>Setiap kunjungan punya cerita.</h1>
-        <p>Tempat yang nyaman, kopi hangat, dan obrolan yang rasanya ingin dilanjutkan lagi besok.</p>
+    <section class="reviews-hero" aria-labelledby="hero-heading">
+      <div class="hero-copy">
+        <p class="hero-eyebrow">Kopi Kita · Teman Cerita</p>
+        <h1 id="hero-heading">Cerita Mereka,<br><em>Tentang Kopi Kita</em></h1>
+        <p class="hero-description">Di antara aroma kopi dan suasana yang hangat, selalu ada cerita yang layak dibagikan. Ceritakan pengalamanmu di sini.</p>
+        <a class="hero-link" href="#form-ulasan">Bagikan ceritamu <span aria-hidden="true">↘</span></a>
       </div>
-      <img src="images/cafe.jpg" alt="Suasana hangat di dalam kedai Kopi Kita">
+      <figure class="hero-photo">
+        <img src="images/hero.jpg" alt="Secangkir latte dan kopi dingin di meja kayu yang hangat">
+        <figcaption>Diracik dengan cerita</figcaption>
+      </figure>
     </section>
 
-    <section class="content-section">
-      <div class="content-inner">
-        <p class="eyebrow">Baca ceritanya</p>
-        <h2 class="section-heading">Kesan yang ingin kami hadirkan</h2>
-        <p class="section-intro">Contoh ulasan berikut adalah konten ilustrasi untuk pratinjau website, bukan testimoni pelanggan terverifikasi.</p>
-        <div class="card-grid">
-          <article class="content-card">
-            <div class="card-copy">
-              <span class="card-label">Contoh ulasan</span>
-              <p class="rating" aria-label="5 dari 5 bintang">★★★★★</p>
-              <h3>Tempat istirahat sejenak</h3>
-              <p>Suasananya hangat dan santai. Pas untuk menikmati kopi sambil ngobrol setelah hari yang panjang.</p>
-              <p><strong>— Pengunjung Kopi Kita</strong></p>
-            </div>
-          </article>
-          <article class="content-card">
-            <div class="card-copy">
-              <span class="card-label">Contoh ulasan</span>
-              <p class="rating" aria-label="5 dari 5 bintang">★★★★★</p>
-              <h3>Ngopi sambil berbagi cerita</h3>
-              <p>Tempatnya nyaman untuk datang bersama teman, ngobrol santai, dan menikmati minuman favorit.</p>
-              <p><strong>— Pengunjung Kopi Kita</strong></p>
-            </div>
-          </article>
-          <article class="content-card">
-            <div class="card-copy">
-              <span class="card-label">Contoh ulasan</span>
-              <p class="rating" aria-label="5 dari 5 bintang">★★★★★</p>
-              <h3>Sore yang lebih menyenangkan</h3>
-              <p>Aroma kopi dan suasana kedainya bikin betah. Rasanya ingin kembali untuk mencoba menu lain.</p>
-              <p><strong>— Pengunjung Kopi Kita</strong></p>
-            </div>
-          </article>
+    <section class="review-section" aria-labelledby="review-section-title">
+      <div class="review-layout">
+        <div class="review-intro">
+          <p class="section-eyebrow">Suara dari pelanggan</p>
+          <h2 id="review-section-title">Satu cerita bisa menghangatkan hari.</h2>
+          <p>Bagikan momen favoritmu saat menikmati Kopi Kita. Cerita kecilmu bisa menjadi inspirasi untuk pengunjung berikutnya.</p>
         </div>
-        <p class="notice">Punya cerita setelah berkunjung? Sampaikan langsung kepada tim Kopi Kita agar ulasan asli dapat ditampilkan di sini.</p>
+
+        <div class="review-content">
+          <form class="review-form" id="review-form">
+            <h3 id="form-ulasan">Tulis ulasanmu</h3>
+            <p class="form-caption">Ceritakan apa yang paling kamu nikmati dari kunjunganmu.</p>
+            <div class="review-fields">
+              <label for="review-name">
+                Nama
+                <input id="review-name" name="name" type="text" maxlength="50" autocomplete="name" placeholder="Namamu" required>
+              </label>
+
+              <fieldset class="rating-field">
+                <legend>Rating bintang</legend>
+                <div class="rating-options" role="group" aria-label="Pilih rating dari 1 sampai 5 bintang">
+                  <input id="rating-1" name="rating" type="radio" value="1" required>
+                  <label for="rating-1" aria-label="1 bintang" title="1 bintang">★</label>
+                  <input id="rating-2" name="rating" type="radio" value="2">
+                  <label for="rating-2" aria-label="2 bintang" title="2 bintang">★</label>
+                  <input id="rating-3" name="rating" type="radio" value="3">
+                  <label for="rating-3" aria-label="3 bintang" title="3 bintang">★</label>
+                  <input id="rating-4" name="rating" type="radio" value="4">
+                  <label for="rating-4" aria-label="4 bintang" title="4 bintang">★</label>
+                  <input id="rating-5" name="rating" type="radio" value="5">
+                  <label for="rating-5" aria-label="5 bintang" title="5 bintang">★</label>
+                </div>
+              </fieldset>
+
+              <label for="review-comment">
+                Komentar atau pengalaman
+                <textarea id="review-comment" name="comment" maxlength="600" placeholder="Bagikan ceritamu tentang kopi, suasana, atau momen yang kamu nikmati..." required></textarea>
+              </label>
+
+              <button class="submit-review" type="submit">Kirim Ulasan</button>
+              <p class="review-status" id="review-status" role="status" aria-live="polite"></p>
+            </div>
+            <p class="review-storage-note">Ulasan pelanggan disimpan di database Supabase setelah koneksi dikonfigurasi.</p>
+          </form>
+
+          <section class="customer-reviews" aria-labelledby="reviews-heading">
+            <h3 class="reviews-heading" id="reviews-heading">Ulasan pelanggan</h3>
+            <div class="review-summary" aria-label="Ringkasan ulasan">
+              <p>Rata-rata rating<strong id="average-rating">—</strong></p>
+              <p>Jumlah ulasan<strong id="review-count">—</strong></p>
+            </div>
+            <div class="review-list" id="review-list" aria-live="polite" aria-label="Ulasan pelanggan">
+              <p class="review-empty" id="review-empty">Belum ada ulasan. Jadilah yang pertama membagikan ceritamu.</p>
+            </div>
+          </section>
+
+          <details class="admin-panel" id="admin-panel">
+            <summary>
+              <span class="admin-mark" aria-hidden="true">KK</span>
+              <span class="admin-summary-copy">
+                <strong>Akses pemilik</strong>
+                <small>Masuk untuk mengelola ulasan pelanggan</small>
+              </span>
+              <span class="admin-chevron" aria-hidden="true">⌄</span>
+            </summary>
+            <div class="admin-panel-body">
+              <p class="admin-panel-intro">Area ini khusus untuk admin Kopi Kita.</p>
+              <form class="review-fields" id="admin-login-form">
+                <label for="admin-email">
+                  Email admin
+                  <input id="admin-email" name="email" type="email" autocomplete="username" required>
+                </label>
+                <label for="admin-password">
+                  Kata sandi
+                  <input id="admin-password" name="password" type="password" autocomplete="current-password" required>
+                </label>
+                <div class="admin-actions">
+                  <button class="admin-login-button" type="submit">Masuk sebagai admin</button>
+                </div>
+              </form>
+            </div>
+          </details>
+          <button class="admin-logout-button" id="admin-logout" type="button" hidden>Keluar admin</button>
+          <p class="review-connection admin-status" id="admin-status" role="status" aria-live="polite"></p>
+          <p class="review-connection" id="connection-status" role="status" aria-live="polite">Menyiapkan koneksi Supabase…</p>
+        </div>
       </div>
     </section>
   </main>
@@ -73,5 +983,359 @@
   <footer class="site-footer">
     <p>Kopi Kita — teman cerita di setiap gelas. <a href="index.html">Kembali ke beranda</a></p>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = 'https://YOUR-PROJECT.supabase.co';
+    const SUPABASE_PUBLISHABLE_KEY = 'YOUR_SUPABASE_PUBLISHABLE_OR_ANON_KEY';
+    const reviewForm = document.querySelector('#review-form');
+    const adminLoginForm = document.querySelector('#admin-login-form');
+    const adminPanel = document.querySelector('#admin-panel');
+    const adminLogoutButton = document.querySelector('#admin-logout');
+    const reviewList = document.querySelector('#review-list');
+    const reviewStatus = document.querySelector('#review-status');
+    const adminStatus = document.querySelector('#admin-status');
+    const connectionStatus = document.querySelector('#connection-status');
+    const averageRating = document.querySelector('#average-rating');
+    const reviewCount = document.querySelector('#review-count');
+    const ratingInputs = [...reviewForm.querySelectorAll('input[name="rating"]')];
+    let reviews = [];
+    let isAdmin = false;
+    let supabaseClient = null;
+
+    function setStatus(element, message, isError = false) {
+      element.textContent = message;
+      element.classList.toggle('is-error', isError);
+    }
+
+    function setFormsEnabled(enabled) {
+      [...reviewForm.elements, ...adminLoginForm.elements].forEach((element) => {
+        element.disabled = !enabled;
+      });
+    }
+
+    function hasAdminRole(session) {
+      return session?.user?.app_metadata?.role === 'admin';
+    }
+
+    function updateAdminUi(session) {
+      isAdmin = hasAdminRole(session);
+      adminPanel.hidden = isAdmin;
+      adminLogoutButton.hidden = !isAdmin;
+      renderReviews();
+
+      if (isAdmin) {
+        setStatus(adminStatus, 'Login admin berhasil. Pengelolaan ulasan aktif.');
+      } else if (session) {
+        setStatus(adminStatus, 'Akun ini tidak memiliki peran admin.', true);
+      } else {
+        setStatus(adminStatus, '');
+      }
+    }
+
+    function makeReviewCard(review) {
+      const card = document.createElement('article');
+      card.className = 'review-card';
+
+      const header = document.createElement('div');
+      header.className = 'review-card-header';
+
+      const avatar = document.createElement('span');
+      avatar.className = 'review-avatar';
+      avatar.setAttribute('aria-hidden', 'true');
+      avatar.textContent = review.name.trim().charAt(0).toLocaleUpperCase('id-ID') || '?';
+
+      const identity = document.createElement('div');
+      const author = document.createElement('h4');
+      author.className = 'review-author';
+      author.textContent = review.name;
+
+      const date = document.createElement('time');
+      date.className = 'review-date';
+      date.dateTime = review.created_at;
+      date.textContent = new Intl.DateTimeFormat('id-ID', { dateStyle: 'long' }).format(new Date(review.created_at));
+      identity.append(author, date);
+      header.append(avatar, identity);
+
+      const stars = document.createElement('p');
+      stars.className = 'rating';
+      stars.textContent = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+      stars.setAttribute('aria-label', `${review.rating} dari 5 bintang`);
+
+      const comment = document.createElement('p');
+      comment.className = 'review-comment';
+      comment.textContent = review.comment;
+
+      card.append(header, stars, comment);
+
+      if (isAdmin) {
+        const deleteButton = document.createElement('button');
+        deleteButton.className = 'delete-review';
+        deleteButton.type = 'button';
+        deleteButton.textContent = 'Hapus';
+        deleteButton.setAttribute('aria-label', `Hapus ulasan dari ${review.name}`);
+        deleteButton.addEventListener('click', () => deleteReview(review.id));
+        card.append(deleteButton);
+      }
+
+      return card;
+    }
+
+    function renderReviews() {
+      reviewList.replaceChildren();
+      if (reviews.length === 0) {
+        const emptyState = document.createElement('p');
+        emptyState.className = 'review-empty';
+        emptyState.id = 'review-empty';
+        emptyState.textContent = 'Belum ada ulasan. Jadilah yang pertama membagikan ceritamu.';
+        reviewList.append(emptyState);
+        return;
+      }
+
+      reviews.forEach((review) => reviewList.append(makeReviewCard(review)));
+    }
+
+    function renderListMessage(message) {
+      const state = document.createElement('p');
+      state.className = 'review-empty';
+      state.id = 'review-empty';
+      state.textContent = message;
+      reviewList.replaceChildren(state);
+    }
+
+    function updateRatingStars() {
+      const selectedRating = Number(reviewForm.querySelector('input[name="rating"]:checked')?.value || 0);
+      ratingInputs.forEach((input) => {
+        input.nextElementSibling.classList.toggle('is-selected', Number(input.value) <= selectedRating);
+      });
+    }
+
+    async function loadReviews() {
+      try {
+        const { data, error } = await supabaseClient
+          .from('reviews')
+          .select('id, name, rating, comment, created_at')
+          .order('created_at', { ascending: false });
+
+        if (error) {
+          renderListMessage('Ulasan gagal dimuat. Periksa koneksi Supabase dan kebijakan RLS.');
+          setStatus(connectionStatus, 'Ulasan gagal dimuat. Periksa koneksi Supabase dan kebijakan RLS.', true);
+          return;
+        }
+
+        reviews = data;
+        renderReviews();
+      } catch (error) {
+        renderListMessage('Ulasan gagal dimuat. Periksa koneksi Supabase dan kebijakan RLS.');
+        setStatus(connectionStatus, 'Ulasan gagal dimuat. Periksa koneksi Supabase dan kebijakan RLS.', true);
+      }
+    }
+
+    async function loadReviewSummary() {
+      try {
+        const { data, error } = await supabaseClient.rpc('get_review_summary');
+        if (error || !data?.length) {
+          setStatus(connectionStatus, 'Ringkasan ulasan gagal dimuat. Periksa fungsi ringkasan di Supabase.', true);
+          return;
+        }
+
+        const summary = data[0];
+        averageRating.textContent = Number(summary.average_rating).toLocaleString('id-ID', {
+          minimumFractionDigits: 1,
+          maximumFractionDigits: 1
+        });
+        reviewCount.textContent = Number(summary.review_count).toLocaleString('id-ID');
+      } catch (error) {
+        setStatus(connectionStatus, 'Ringkasan ulasan gagal dimuat. Periksa fungsi ringkasan di Supabase.', true);
+      }
+    }
+
+    async function deleteReview(id) {
+      if (!isAdmin) {
+        setStatus(reviewStatus, 'Hanya admin yang dapat menghapus ulasan.', true);
+        return;
+      }
+
+      if (!window.confirm('Hapus ulasan ini? Tindakan ini tidak dapat dibatalkan.')) return;
+
+      try {
+        const { data, error } = await supabaseClient
+          .from('reviews')
+          .delete()
+          .eq('id', id)
+          .select('id');
+
+        if (error) {
+          setStatus(reviewStatus, 'Ulasan gagal dihapus. Pastikan akun memiliki izin admin.', true);
+          return;
+        }
+
+        if (!data?.length) {
+          setStatus(reviewStatus, 'Ulasan tidak ditemukan atau penghapusan ditolak oleh kebijakan admin.', true);
+          return;
+        }
+
+        reviews = reviews.filter((review) => review.id !== id);
+        renderReviews();
+        await loadReviewSummary();
+        setStatus(reviewStatus, 'Ulasan berhasil dihapus.');
+      } catch (error) {
+        setStatus(reviewStatus, 'Ulasan gagal dihapus. Pastikan akun memiliki izin admin.', true);
+      }
+    }
+
+    ratingInputs.forEach((input) => {
+      input.addEventListener('change', updateRatingStars);
+      input.nextElementSibling.addEventListener('mouseenter', () => {
+        const hoveredRating = Number(input.value);
+        ratingInputs.forEach((star) => {
+          star.nextElementSibling.classList.toggle('is-preview', Number(star.value) <= hoveredRating);
+        });
+      });
+      input.nextElementSibling.addEventListener('mouseleave', () => {
+        ratingInputs.forEach((star) => star.nextElementSibling.classList.remove('is-preview'));
+      });
+    });
+
+    reviewForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!reviewForm.reportValidity()) return;
+
+      const formData = new FormData(reviewForm);
+      const name = formData.get('name').trim();
+      const comment = formData.get('comment').trim();
+      const rating = Number(formData.get('rating'));
+
+      if (!name || !comment) {
+        reviewStatus.classList.add('is-error');
+        reviewStatus.textContent = 'Nama dan komentar tidak boleh hanya berisi spasi.';
+        (!name ? reviewForm.elements.name : reviewForm.elements.comment).focus();
+        return;
+      }
+
+      if (rating < 1 || rating > 5) {
+        setStatus(reviewStatus, 'Silakan pilih rating bintang dari 1 sampai 5.', true);
+        return;
+      }
+
+      const submitButton = reviewForm.querySelector('[type="submit"]');
+      submitButton.disabled = true;
+      try {
+        const { data, error } = await supabaseClient
+          .from('reviews')
+          .insert({ name, rating, comment })
+          .select('id, name, rating, comment, created_at')
+          .single();
+
+        if (error) throw error;
+
+        reviews.unshift(data);
+        renderReviews();
+        reviewForm.reset();
+        updateRatingStars();
+        setStatus(reviewStatus, 'Terima kasih! Ulasanmu berhasil dikirim.');
+        await loadReviewSummary();
+      } catch (error) {
+        setStatus(reviewStatus, 'Ulasan gagal dikirim. Silakan coba kembali.', true);
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+
+    adminLoginForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!adminLoginForm.reportValidity()) return;
+
+      try {
+        const formData = new FormData(adminLoginForm);
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
+          email: formData.get('email').trim(),
+          password: formData.get('password')
+        });
+
+        if (error) {
+          setStatus(adminStatus, 'Login gagal. Periksa email dan kata sandi admin.', true);
+          return;
+        }
+
+        if (!hasAdminRole(data.session)) {
+          await supabaseClient.auth.signOut();
+          setStatus(adminStatus, 'Akun ini tidak memiliki peran admin.', true);
+          return;
+        }
+
+        adminLoginForm.reset();
+        adminPanel.open = false;
+        updateAdminUi(data.session);
+      } catch (error) {
+        setStatus(adminStatus, 'Login gagal karena koneksi Supabase bermasalah.', true);
+      }
+    });
+
+    adminLogoutButton.addEventListener('click', async () => {
+      try {
+        const { error } = await supabaseClient.auth.signOut();
+        if (error) {
+          setStatus(adminStatus, 'Logout gagal. Silakan coba kembali.', true);
+          return;
+        }
+
+        updateAdminUi(null);
+        setStatus(adminStatus, 'Kamu sudah keluar dari mode admin.');
+      } catch (error) {
+        setStatus(adminStatus, 'Logout gagal. Silakan coba kembali.', true);
+      }
+    });
+
+    async function initializeSupabase() {
+      const configured = SUPABASE_URL.startsWith('https://')
+        && !SUPABASE_URL.includes('YOUR-PROJECT')
+        && !SUPABASE_PUBLISHABLE_KEY.includes('YOUR_');
+
+      if (!configured) {
+        setFormsEnabled(false);
+        renderListMessage('Supabase belum dikonfigurasi. Ulasan akan tampil setelah koneksi database siap.');
+        setStatus(reviewStatus, 'Isi URL project dan publishable/anon key Supabase di konfigurasi halaman.', true);
+        setStatus(connectionStatus, 'Koneksi database belum tersedia. Data belum dibaca atau disimpan.');
+        return;
+      }
+
+      if (!window.supabase?.createClient) {
+        setFormsEnabled(false);
+        renderListMessage('Pustaka Supabase belum tersedia. Ulasan belum dapat dimuat.');
+        setStatus(reviewStatus, 'Formulir belum aktif karena pustaka Supabase gagal dimuat.', true);
+        setStatus(connectionStatus, 'Pustaka Supabase gagal dimuat. Periksa koneksi internet lalu muat ulang halaman.', true);
+        return;
+      }
+
+      try {
+        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+      } catch (error) {
+        setFormsEnabled(false);
+        renderListMessage('Konfigurasi Supabase belum valid. Ulasan belum dapat dimuat.');
+        setStatus(reviewStatus, 'Periksa URL project dan publishable/anon key Supabase.', true);
+        setStatus(connectionStatus, 'Koneksi database gagal disiapkan.', true);
+        return;
+      }
+
+      setFormsEnabled(true);
+      setStatus(connectionStatus, 'Menghubungkan ke Supabase…');
+      supabaseClient.auth.onAuthStateChange((_event, session) => updateAdminUi(session));
+
+      const { data, error } = await supabaseClient.auth.getSession();
+      if (error) {
+        setStatus(connectionStatus, 'Status login admin gagal diperiksa.', true);
+      } else {
+        updateAdminUi(data.session);
+      }
+
+      await Promise.all([loadReviews(), loadReviewSummary()]);
+      if (!connectionStatus.classList.contains('is-error')) {
+        setStatus(connectionStatus, 'Terhubung ke Supabase. Data ulasan tersimpan online.');
+      }
+    }
+
+    initializeSupabase();
+  </script>
 </body>
 </html>
