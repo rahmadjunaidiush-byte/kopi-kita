@@ -399,6 +399,7 @@
       color: var(--review-coffee);
       font-size: 0.83rem;
       line-height: 1.5;
+      overflow-wrap: anywhere;
     }
 
     .review-status.is-error {
@@ -550,185 +551,133 @@
       color: #9c3d2c;
     }
 
-    .admin-panel {
-      margin-top: 24px;
-      overflow: hidden;
-      border: 1px solid var(--review-line);
-      border-radius: 14px;
-      background: var(--review-paper);
-      box-shadow: 0 8px 24px rgba(58, 38, 23, 0.045);
-    }
-
-    .admin-panel summary {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      padding: 16px 18px;
-      color: var(--review-coffee);
-      cursor: pointer;
-      list-style: none;
-      transition: background-color 160ms ease;
-    }
-
-    .admin-panel summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .admin-panel summary:hover {
-      background: #fcf8f1;
-    }
-
-    .admin-panel summary:focus-visible {
-      outline: 3px solid rgba(185, 133, 66, 0.5);
-      outline-offset: -3px;
-    }
-
-    .admin-mark {
-      display: grid;
-      width: 42px;
-      height: 42px;
-      flex: 0 0 auto;
-      place-items: center;
-      border: 1px solid #e8d7ba;
-      border-radius: 50%;
-      background: var(--review-cream);
-      color: var(--review-coffee);
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 0.9rem;
-      font-weight: 600;
-    }
-
-    .admin-summary-copy {
-      display: grid;
-      gap: 3px;
-    }
-
-    .admin-summary-copy strong {
-      font-size: 0.88rem;
-    }
-
-    .admin-summary-copy small {
-      color: var(--review-muted);
-      font-size: 0.76rem;
-    }
-
-    .admin-chevron {
-      margin-left: auto;
-      color: var(--review-gold);
-      font-size: 1.15rem;
-      transition: transform 160ms ease;
-    }
-
-    .admin-panel[open] .admin-chevron {
-      transform: rotate(180deg);
-    }
-
-    .admin-panel[open] summary {
-      border-bottom: 1px solid var(--review-line);
-    }
-
-    .admin-panel-body {
-      padding: 20px;
-    }
-
-    .admin-panel-intro {
-      margin: 0 0 18px;
-      color: var(--review-muted);
-      font-size: 0.82rem;
-      line-height: 1.6;
-    }
-
-    .admin-panel label {
-      display: block;
-      color: var(--review-coffee);
-      font-size: 0.82rem;
-      font-weight: 600;
-    }
-
-    .admin-panel input {
-      display: block;
-      width: 100%;
-      min-height: 46px;
-      margin-top: 7px;
-      padding: 11px 13px;
-      border: 1px solid var(--review-line);
-      border-radius: 8px;
-      background: #fff;
-      color: var(--review-roast);
-      font: inherit;
-    }
-
-    .admin-panel input:focus {
-      border-color: var(--review-gold);
-      outline: 0;
-      box-shadow: 0 0 0 3px rgba(185, 133, 66, 0.14);
-    }
-
-    .admin-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .admin-login-button,
-    .admin-logout-button {
-      min-height: 44px;
-      padding: 10px 15px;
-      border: 1px solid var(--review-coffee);
-      border-radius: 8px;
-      background: var(--review-coffee);
-      color: #fffdfa;
-      cursor: pointer;
-      font: inherit;
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-
-    .admin-login-button {
-      width: 100%;
-      transition: background-color 160ms ease, transform 160ms ease;
-    }
-
-    .admin-login-button:hover:not(:disabled) {
-      transform: translateY(-1px);
-      background: #5a3925;
-    }
-
-    .admin-logout-button {
-      margin-top: 16px;
-      background: transparent;
-      color: var(--review-coffee);
-    }
-
-    .admin-status {
-      margin-top: 10px;
-    }
-
     .delete-review {
-      margin-top: 18px;
-      padding: 8px 12px;
-      border: 1px solid #c78673;
-      border-radius: 7px;
-      background: transparent;
+      margin-top: 16px;
+      padding: 8px 11px;
+      border: 1px solid #e3c9bb;
+      border-radius: 999px;
+      background: #fffaf6;
       color: #8d3c2b;
       cursor: pointer;
       font: inherit;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       font-weight: 600;
       transition: background-color 160ms ease, color 160ms ease;
     }
 
     .delete-review:hover {
+      border-color: #8d3c2b;
       background: #8d3c2b;
       color: #fff;
     }
 
-    .admin-login-button:focus-visible,
-    .admin-logout-button:focus-visible,
-    .delete-review:focus-visible {
+    .delete-confirmation {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+      padding: 12px;
+      border: 1px solid var(--review-line);
+      border-radius: 9px;
+      background: #fffaf6;
+    }
+
+    .delete-confirmation label {
+      color: var(--review-coffee);
+      font-size: 0.78rem;
+      line-height: 1.5;
+    }
+
+    .delete-confirmation input[type="password"] {
+      width: 100%;
+      min-height: 40px;
+      margin-top: 5px;
+      padding: 8px 10px;
+      border: 1px solid var(--review-line);
+      border-radius: 6px;
+      font: inherit;
+    }
+
+    .delete-confirmation .delete-confirm-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .delete-confirmation .delete-confirm-check input {
+      margin-top: 3px;
+      accent-color: #8d3c2b;
+    }
+
+    .delete-confirmation-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .delete-confirmation-actions button {
+      min-height: 38px;
+      padding: 7px 10px;
+      border: 1px solid #8d3c2b;
+      border-radius: 6px;
+      background: #8d3c2b;
+      color: #fff;
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.76rem;
+      font-weight: 600;
+    }
+
+    .delete-confirmation-actions .cancel-delete {
+      border-color: var(--review-line);
+      background: #fff;
+      color: var(--review-coffee);
+    }
+
+    .delete-review:focus-visible,
+    .copy-delete-token:focus-visible,
+    .delete-confirmation button:focus-visible,
+    .delete-confirmation input:focus-visible {
       outline: 3px solid rgba(185, 133, 66, 0.6);
       outline-offset: 3px;
+    }
+
+    .delete-token-panel {
+      margin: 14px 0 0;
+      padding: 14px;
+      border: 1px solid #dfcfad;
+      border-radius: 10px;
+      background: #fbf5e9;
+    }
+
+    .delete-token-panel p {
+      margin: 0;
+      color: var(--review-coffee);
+      font-size: 0.8rem;
+      line-height: 1.6;
+    }
+
+    .delete-token-value {
+      display: block;
+      margin: 9px 0 12px;
+      padding: 10px;
+      border: 1px solid var(--review-line);
+      border-radius: 7px;
+      background: #fff;
+      color: var(--review-coffee);
+      font-size: 0.78rem;
+      overflow-wrap: anywhere;
+      user-select: all;
+    }
+
+    .copy-delete-token {
+      padding: 8px 12px;
+      border: 1px solid var(--review-coffee);
+      border-radius: 7px;
+      background: var(--review-coffee);
+      color: #fffdfa;
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.78rem;
+      font-weight: 600;
     }
 
     [hidden] {
@@ -842,15 +791,6 @@
         padding: 18px;
       }
 
-      .admin-actions {
-        align-items: stretch;
-        flex-direction: column;
-      }
-
-      .admin-login-button,
-      .admin-logout-button {
-        width: 100%;
-      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -886,7 +826,7 @@
       </div>
       <figure class="hero-photo">
         <img src="images/hero.jpg" alt="Secangkir latte dan kopi dingin di meja kayu yang hangat">
-        <figcaption>Diracik dengan cerita</figcaption>
+        <figcaption>Setiap cangkir punya cerita</figcaption>
       </figure>
     </section>
 
@@ -932,7 +872,12 @@
               <button class="submit-review" type="submit">Kirim Ulasan</button>
               <p class="review-status" id="review-status" role="status" aria-live="polite"></p>
             </div>
-            <p class="review-storage-note">Ulasan pelanggan disimpan di database Supabase setelah koneksi dikonfigurasi.</p>
+            <p class="review-storage-note">Tanpa login. Ulasan hanya tersimpan di browser ini dan tidak dibagikan ke perangkat lain. Kode penghapusan di penyimpanan lokal bukan perlindungan aman untuk website publik.</p>
+            <div class="delete-token-panel" id="delete-token-panel" hidden>
+              <p>Simpan kode ini untuk menghapus ulasan. Siapa pun yang memiliki kode dapat menghapusnya.</p>
+              <code class="delete-token-value" id="delete-token-value"></code>
+              <button class="copy-delete-token" id="copy-delete-token" type="button">Salin kode penghapusan</button>
+            </div>
           </form>
 
           <section class="customer-reviews" aria-labelledby="reviews-heading">
@@ -946,35 +891,7 @@
             </div>
           </section>
 
-          <details class="admin-panel" id="admin-panel">
-            <summary>
-              <span class="admin-mark" aria-hidden="true">KK</span>
-              <span class="admin-summary-copy">
-                <strong>Akses pemilik</strong>
-                <small>Masuk untuk mengelola ulasan pelanggan</small>
-              </span>
-              <span class="admin-chevron" aria-hidden="true">⌄</span>
-            </summary>
-            <div class="admin-panel-body">
-              <p class="admin-panel-intro">Area ini khusus untuk admin Kopi Kita.</p>
-              <form class="review-fields" id="admin-login-form">
-                <label for="admin-email">
-                  Email admin
-                  <input id="admin-email" name="email" type="email" autocomplete="username" required>
-                </label>
-                <label for="admin-password">
-                  Kata sandi
-                  <input id="admin-password" name="password" type="password" autocomplete="current-password" required>
-                </label>
-                <div class="admin-actions">
-                  <button class="admin-login-button" type="submit">Masuk sebagai admin</button>
-                </div>
-              </form>
-            </div>
-          </details>
-          <button class="admin-logout-button" id="admin-logout" type="button" hidden>Keluar admin</button>
-          <p class="review-connection admin-status" id="admin-status" role="status" aria-live="polite"></p>
-          <p class="review-connection" id="connection-status" role="status" aria-live="polite">Menyiapkan koneksi Supabase…</p>
+          <p class="review-connection" id="connection-status" role="status" aria-live="polite"></p>
         </div>
       </div>
     </section>
@@ -984,24 +901,21 @@
     <p>Kopi Kita — teman cerita di setiap gelas. <a href="index.html">Kembali ke beranda</a></p>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
-    const SUPABASE_URL = 'https://YOUR-PROJECT.supabase.co';
-    const SUPABASE_PUBLISHABLE_KEY = 'YOUR_SUPABASE_PUBLISHABLE_OR_ANON_KEY';
+    const reviewStorageKey = 'kopi-kita-ulasan-local';
     const reviewForm = document.querySelector('#review-form');
-    const adminLoginForm = document.querySelector('#admin-login-form');
-    const adminPanel = document.querySelector('#admin-panel');
-    const adminLogoutButton = document.querySelector('#admin-logout');
     const reviewList = document.querySelector('#review-list');
     const reviewStatus = document.querySelector('#review-status');
-    const adminStatus = document.querySelector('#admin-status');
     const connectionStatus = document.querySelector('#connection-status');
     const averageRating = document.querySelector('#average-rating');
     const reviewCount = document.querySelector('#review-count');
+    const deleteTokenPanel = document.querySelector('#delete-token-panel');
+    const deleteTokenValue = document.querySelector('#delete-token-value');
+    const copyDeleteTokenButton = document.querySelector('#copy-delete-token');
     const ratingInputs = [...reviewForm.querySelectorAll('input[name="rating"]')];
     let reviews = [];
-    let isAdmin = false;
-    let supabaseClient = null;
+    let displayedTokenReviewId = null;
+    let hasInvalidStoredReviews = false;
 
     function setStatus(element, message, isError = false) {
       element.textContent = message;
@@ -1009,28 +923,9 @@
     }
 
     function setFormsEnabled(enabled) {
-      [...reviewForm.elements, ...adminLoginForm.elements].forEach((element) => {
+      [...reviewForm.elements].forEach((element) => {
         element.disabled = !enabled;
       });
-    }
-
-    function hasAdminRole(session) {
-      return session?.user?.app_metadata?.role === 'admin';
-    }
-
-    function updateAdminUi(session) {
-      isAdmin = hasAdminRole(session);
-      adminPanel.hidden = isAdmin;
-      adminLogoutButton.hidden = !isAdmin;
-      renderReviews();
-
-      if (isAdmin) {
-        setStatus(adminStatus, 'Login admin berhasil. Pengelolaan ulasan aktif.');
-      } else if (session) {
-        setStatus(adminStatus, 'Akun ini tidak memiliki peran admin.', true);
-      } else {
-        setStatus(adminStatus, '');
-      }
     }
 
     function makeReviewCard(review) {
@@ -1068,15 +963,60 @@
 
       card.append(header, stars, comment);
 
-      if (isAdmin) {
-        const deleteButton = document.createElement('button');
-        deleteButton.className = 'delete-review';
-        deleteButton.type = 'button';
-        deleteButton.textContent = 'Hapus';
-        deleteButton.setAttribute('aria-label', `Hapus ulasan dari ${review.name}`);
-        deleteButton.addEventListener('click', () => deleteReview(review.id));
-        card.append(deleteButton);
-      }
+      const deleteButton = document.createElement('button');
+      deleteButton.className = 'delete-review';
+      deleteButton.type = 'button';
+      deleteButton.textContent = 'Hapus ulasan saya';
+      deleteButton.setAttribute('aria-label', `Hapus ulasan dari ${review.name} menggunakan kode privat`);
+      const deleteForm = document.createElement('form');
+      deleteForm.className = 'delete-confirmation';
+      deleteForm.hidden = true;
+
+      const tokenLabel = document.createElement('label');
+      tokenLabel.textContent = 'Kode privat';
+      const tokenInput = document.createElement('input');
+      tokenInput.type = 'password';
+      tokenInput.autocomplete = 'off';
+      tokenInput.required = true;
+      tokenInput.setAttribute('aria-label', 'Kode privat penghapusan');
+      tokenLabel.append(tokenInput);
+
+      const confirmationLabel = document.createElement('label');
+      confirmationLabel.className = 'delete-confirm-check';
+      const confirmationInput = document.createElement('input');
+      confirmationInput.type = 'checkbox';
+      confirmationInput.required = true;
+      const confirmationText = document.createElement('span');
+      confirmationText.textContent = 'Saya yakin ingin menghapus ulasan ini.';
+      confirmationLabel.append(confirmationInput, confirmationText);
+
+      const actions = document.createElement('div');
+      actions.className = 'delete-confirmation-actions';
+      const cancelButton = document.createElement('button');
+      cancelButton.className = 'cancel-delete';
+      cancelButton.type = 'button';
+      cancelButton.textContent = 'Batal';
+      const confirmButton = document.createElement('button');
+      confirmButton.type = 'submit';
+      confirmButton.textContent = 'Konfirmasi hapus';
+      actions.append(cancelButton, confirmButton);
+      deleteForm.append(tokenLabel, confirmationLabel, actions);
+
+      deleteButton.addEventListener('click', () => {
+        deleteButton.hidden = true;
+        deleteForm.hidden = false;
+        tokenInput.focus();
+      });
+      cancelButton.addEventListener('click', () => {
+        deleteForm.reset();
+        deleteForm.hidden = true;
+        deleteButton.hidden = false;
+      });
+      deleteForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (deleteForm.reportValidity()) deleteReview(review.id, tokenInput.value);
+      });
+      card.append(deleteButton, deleteForm);
 
       return card;
     }
@@ -1110,78 +1050,95 @@
       });
     }
 
-    async function loadReviews() {
+    function isReview(review) {
+      return review
+        && typeof review.id === 'string'
+        && typeof review.name === 'string'
+        && Number.isInteger(review.rating)
+        && review.rating >= 1
+        && review.rating <= 5
+        && typeof review.comment === 'string'
+        && typeof review.created_at === 'string'
+        && !Number.isNaN(Date.parse(review.created_at))
+        && typeof review.deletion_token === 'string';
+    }
+
+    function loadReviews() {
       try {
-        const { data, error } = await supabaseClient
-          .from('reviews')
-          .select('id, name, rating, comment, created_at')
-          .order('created_at', { ascending: false });
+        const savedReviews = localStorage.getItem(reviewStorageKey);
+        const parsedReviews = savedReviews ? JSON.parse(savedReviews) : [];
+        if (!Array.isArray(parsedReviews)) throw new Error('Data ulasan tidak valid.');
 
-        if (error) {
-          renderListMessage('Ulasan gagal dimuat. Periksa koneksi Supabase dan kebijakan RLS.');
-          setStatus(connectionStatus, 'Ulasan gagal dimuat. Periksa koneksi Supabase dan kebijakan RLS.', true);
-          return;
+        reviews = parsedReviews.filter(isReview);
+        if (reviews.length !== parsedReviews.length) {
+          hasInvalidStoredReviews = true;
         }
-
-        reviews = data;
         renderReviews();
+        return true;
       } catch (error) {
-        renderListMessage('Ulasan gagal dimuat. Periksa koneksi Supabase dan kebijakan RLS.');
-        setStatus(connectionStatus, 'Ulasan gagal dimuat. Periksa koneksi Supabase dan kebijakan RLS.', true);
+        reviews = [];
+        renderListMessage('Ulasan lokal gagal dibaca. Penyimpanan browser mungkin tidak tersedia atau datanya rusak.');
+        setStatus(connectionStatus, 'Penyimpanan lokal gagal dibaca. Ulasan baru tidak dapat disimpan.', true);
+        return false;
       }
     }
 
-    async function loadReviewSummary() {
+    function saveReviews(nextReviews) {
       try {
-        const { data, error } = await supabaseClient.rpc('get_review_summary');
-        if (error || !data?.length) {
-          setStatus(connectionStatus, 'Ringkasan ulasan gagal dimuat. Periksa fungsi ringkasan di Supabase.', true);
-          return;
-        }
-
-        const summary = data[0];
-        averageRating.textContent = Number(summary.average_rating).toLocaleString('id-ID', {
-          minimumFractionDigits: 1,
-          maximumFractionDigits: 1
-        });
-        reviewCount.textContent = Number(summary.review_count).toLocaleString('id-ID');
+        localStorage.setItem(reviewStorageKey, JSON.stringify(nextReviews));
+        return true;
       } catch (error) {
-        setStatus(connectionStatus, 'Ringkasan ulasan gagal dimuat. Periksa fungsi ringkasan di Supabase.', true);
+        setStatus(reviewStatus, 'Ulasan gagal disimpan. Periksa ruang penyimpanan browser lalu coba lagi.', true);
+        return false;
       }
     }
 
-    async function deleteReview(id) {
-      if (!isAdmin) {
-        setStatus(reviewStatus, 'Hanya admin yang dapat menghapus ulasan.', true);
+    function updateReviewSummary() {
+      const count = reviews.length;
+      const average = count
+        ? reviews.reduce((total, review) => total + review.rating, 0) / count
+        : 0;
+      averageRating.textContent = average.toLocaleString('id-ID', {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1
+      });
+      reviewCount.textContent = count.toLocaleString('id-ID');
+    }
+
+    function createDeletionToken() {
+      return createRandomHex(32);
+    }
+
+    function createRandomHex(byteLength) {
+      const values = new Uint8Array(byteLength);
+      window.crypto.getRandomValues(values);
+      return Array.from(values, (value) => value.toString(16).padStart(2, '0')).join('');
+    }
+
+    function deleteReview(id, deletionToken) {
+      const review = reviews.find((item) => item.id === id);
+      if (!review) {
+        setStatus(reviewStatus, 'Ulasan tidak ditemukan.', true);
         return;
       }
 
-      if (!window.confirm('Hapus ulasan ini? Tindakan ini tidak dapat dibatalkan.')) return;
-
-      try {
-        const { data, error } = await supabaseClient
-          .from('reviews')
-          .delete()
-          .eq('id', id)
-          .select('id');
-
-        if (error) {
-          setStatus(reviewStatus, 'Ulasan gagal dihapus. Pastikan akun memiliki izin admin.', true);
-          return;
-        }
-
-        if (!data?.length) {
-          setStatus(reviewStatus, 'Ulasan tidak ditemukan atau penghapusan ditolak oleh kebijakan admin.', true);
-          return;
-        }
-
-        reviews = reviews.filter((review) => review.id !== id);
-        renderReviews();
-        await loadReviewSummary();
-        setStatus(reviewStatus, 'Ulasan berhasil dihapus.');
-      } catch (error) {
-        setStatus(reviewStatus, 'Ulasan gagal dihapus. Pastikan akun memiliki izin admin.', true);
+      if (deletionToken.trim() !== review.deletion_token) {
+        setStatus(reviewStatus, 'Kode privat salah. Ulasan tidak dihapus.', true);
+        return;
       }
+
+      const nextReviews = reviews.filter((item) => item.id !== id);
+      if (!saveReviews(nextReviews)) return;
+
+      reviews = nextReviews;
+      renderReviews();
+      updateReviewSummary();
+      if (displayedTokenReviewId === id) {
+        displayedTokenReviewId = null;
+        deleteTokenValue.textContent = '';
+        deleteTokenPanel.hidden = true;
+      }
+      setStatus(reviewStatus, 'Ulasan berhasil dihapus.');
     }
 
     ratingInputs.forEach((input) => {
@@ -1197,7 +1154,7 @@
       });
     });
 
-    reviewForm.addEventListener('submit', async (event) => {
+    reviewForm.addEventListener('submit', (event) => {
       event.preventDefault();
       if (!reviewForm.reportValidity()) return;
 
@@ -1221,121 +1178,59 @@
       const submitButton = reviewForm.querySelector('[type="submit"]');
       submitButton.disabled = true;
       try {
-        const { data, error } = await supabaseClient
-          .from('reviews')
-          .insert({ name, rating, comment })
-          .select('id, name, rating, comment, created_at')
-          .single();
+        const newReview = {
+          id: createRandomHex(16),
+          name,
+          rating,
+          comment,
+          created_at: new Date().toISOString(),
+          deletion_token: createDeletionToken()
+        };
+        const nextReviews = [newReview, ...reviews];
+        if (!saveReviews(nextReviews)) return;
 
-        if (error) throw error;
-
-        reviews.unshift(data);
+        reviews = nextReviews;
+        displayedTokenReviewId = newReview.id;
         renderReviews();
+        updateReviewSummary();
         reviewForm.reset();
         updateRatingStars();
-        setStatus(reviewStatus, 'Terima kasih! Ulasanmu berhasil dikirim.');
-        await loadReviewSummary();
+        deleteTokenValue.textContent = newReview.deletion_token;
+        deleteTokenPanel.hidden = false;
+        setStatus(reviewStatus, 'Ulasan berhasil dikirim di browser ini. Simpan kode privat di bawah ini untuk menghapusnya nanti.');
       } catch (error) {
-        setStatus(reviewStatus, 'Ulasan gagal dikirim. Silakan coba kembali.', true);
+        setStatus(reviewStatus, 'Ulasan gagal diproses. Pastikan browser mendukung penyimpanan lokal dan coba lagi.', true);
       } finally {
         submitButton.disabled = false;
       }
     });
 
-    adminLoginForm.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      if (!adminLoginForm.reportValidity()) return;
-
+    copyDeleteTokenButton.addEventListener('click', async () => {
+      if (!navigator.clipboard?.writeText) {
+        setStatus(reviewStatus, 'Penyalinan otomatis tidak tersedia. Pilih kode lalu salin secara manual.', true);
+        return;
+      }
       try {
-        const formData = new FormData(adminLoginForm);
-        const { data, error } = await supabaseClient.auth.signInWithPassword({
-          email: formData.get('email').trim(),
-          password: formData.get('password')
-        });
-
-        if (error) {
-          setStatus(adminStatus, 'Login gagal. Periksa email dan kata sandi admin.', true);
-          return;
-        }
-
-        if (!hasAdminRole(data.session)) {
-          await supabaseClient.auth.signOut();
-          setStatus(adminStatus, 'Akun ini tidak memiliki peran admin.', true);
-          return;
-        }
-
-        adminLoginForm.reset();
-        adminPanel.open = false;
-        updateAdminUi(data.session);
+        await navigator.clipboard.writeText(deleteTokenValue.textContent);
+        setStatus(reviewStatus, 'Kode penghapusan berhasil disalin.');
       } catch (error) {
-        setStatus(adminStatus, 'Login gagal karena koneksi Supabase bermasalah.', true);
+        setStatus(reviewStatus, 'Kode tidak berhasil disalin. Pilih kode lalu salin secara manual.', true);
       }
     });
 
-    adminLogoutButton.addEventListener('click', async () => {
-      try {
-        const { error } = await supabaseClient.auth.signOut();
-        if (error) {
-          setStatus(adminStatus, 'Logout gagal. Silakan coba kembali.', true);
-          return;
-        }
-
-        updateAdminUi(null);
-        setStatus(adminStatus, 'Kamu sudah keluar dari mode admin.');
-      } catch (error) {
-        setStatus(adminStatus, 'Logout gagal. Silakan coba kembali.', true);
-      }
-    });
-
-    async function initializeSupabase() {
-      const configured = SUPABASE_URL.startsWith('https://')
-        && !SUPABASE_URL.includes('YOUR-PROJECT')
-        && !SUPABASE_PUBLISHABLE_KEY.includes('YOUR_');
-
-      if (!configured) {
-        setFormsEnabled(false);
-        renderListMessage('Supabase belum dikonfigurasi. Ulasan akan tampil setelah koneksi database siap.');
-        setStatus(reviewStatus, 'Isi URL project dan publishable/anon key Supabase di konfigurasi halaman.', true);
-        setStatus(connectionStatus, 'Koneksi database belum tersedia. Data belum dibaca atau disimpan.');
-        return;
-      }
-
-      if (!window.supabase?.createClient) {
-        setFormsEnabled(false);
-        renderListMessage('Pustaka Supabase belum tersedia. Ulasan belum dapat dimuat.');
-        setStatus(reviewStatus, 'Formulir belum aktif karena pustaka Supabase gagal dimuat.', true);
-        setStatus(connectionStatus, 'Pustaka Supabase gagal dimuat. Periksa koneksi internet lalu muat ulang halaman.', true);
-        return;
-      }
-
-      try {
-        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
-      } catch (error) {
-        setFormsEnabled(false);
-        renderListMessage('Konfigurasi Supabase belum valid. Ulasan belum dapat dimuat.');
-        setStatus(reviewStatus, 'Periksa URL project dan publishable/anon key Supabase.', true);
-        setStatus(connectionStatus, 'Koneksi database gagal disiapkan.', true);
-        return;
-      }
-
+    if (loadReviews()) {
       setFormsEnabled(true);
-      setStatus(connectionStatus, 'Menghubungkan ke Supabase…');
-      supabaseClient.auth.onAuthStateChange((_event, session) => updateAdminUi(session));
-
-      const { data, error } = await supabaseClient.auth.getSession();
-      if (error) {
-        setStatus(connectionStatus, 'Status login admin gagal diperiksa.', true);
-      } else {
-        updateAdminUi(data.session);
-      }
-
-      await Promise.all([loadReviews(), loadReviewSummary()]);
-      if (!connectionStatus.classList.contains('is-error')) {
-        setStatus(connectionStatus, 'Terhubung ke Supabase. Data ulasan tersimpan online.');
-      }
+      updateReviewSummary();
+      setStatus(
+        connectionStatus,
+        hasInvalidStoredReviews
+          ? 'Sebagian data lokal tidak valid dan tidak ditampilkan.'
+          : '',
+        hasInvalidStoredReviews
+      );
+    } else {
+      setFormsEnabled(false);
     }
-
-    initializeSupabase();
   </script>
 </body>
 </html>
