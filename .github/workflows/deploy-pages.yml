@@ -29,6 +29,12 @@ jobs:
           cp ./*.html ./*.js ./*.css _site/
           cp -R images _site/images
 
+      - name: Verify static site files
+        run: |
+          test -s _site/index.html
+          test -s _site/ulasan.html
+          test -d _site/images
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
