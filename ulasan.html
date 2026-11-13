@@ -540,17 +540,6 @@
       font-weight: 600;
     }
 
-    .review-connection {
-      margin: 12px 0 0;
-      color: var(--review-muted);
-      font-size: 0.8rem;
-      line-height: 1.6;
-    }
-
-    .review-connection.is-error {
-      color: #9c3d2c;
-    }
-
     .delete-review {
       margin-top: 16px;
       padding: 8px 11px;
@@ -887,11 +876,9 @@
               <p>Jumlah ulasan<strong id="review-count">—</strong></p>
             </div>
             <div class="review-list" id="review-list" aria-live="polite" aria-label="Ulasan pelanggan">
-              <p class="review-empty" id="review-empty">Belum ada ulasan. Jadilah yang pertama membagikan ceritamu.</p>
+              <p class="review-empty">Belum ada ulasan. Jadilah yang pertama membagikan ceritamu.</p>
             </div>
           </section>
-
-          <p class="review-connection" id="connection-status" role="status" aria-live="polite"></p>
         </div>
       </div>
     </section>
@@ -906,7 +893,6 @@
     const reviewForm = document.querySelector('#review-form');
     const reviewList = document.querySelector('#review-list');
     const reviewStatus = document.querySelector('#review-status');
-    const connectionStatus = document.querySelector('#connection-status');
     const averageRating = document.querySelector('#average-rating');
     const reviewCount = document.querySelector('#review-count');
     const deleteTokenPanel = document.querySelector('#delete-token-panel');
@@ -1026,7 +1012,6 @@
       if (reviews.length === 0) {
         const emptyState = document.createElement('p');
         emptyState.className = 'review-empty';
-        emptyState.id = 'review-empty';
         emptyState.textContent = 'Belum ada ulasan. Jadilah yang pertama membagikan ceritamu.';
         reviewList.append(emptyState);
         return;
@@ -1038,7 +1023,6 @@
     function renderListMessage(message) {
       const state = document.createElement('p');
       state.className = 'review-empty';
-      state.id = 'review-empty';
       state.textContent = message;
       reviewList.replaceChildren(state);
     }
@@ -1078,7 +1062,7 @@
       } catch (error) {
         reviews = [];
         renderListMessage('Ulasan lokal gagal dibaca. Penyimpanan browser mungkin tidak tersedia atau datanya rusak.');
-        setStatus(connectionStatus, 'Penyimpanan lokal gagal dibaca. Ulasan baru tidak dapat disimpan.', true);
+        setStatus(reviewStatus, 'Penyimpanan lokal gagal dibaca. Ulasan baru tidak dapat disimpan.', true);
         return false;
       }
     }
@@ -1221,13 +1205,9 @@
     if (loadReviews()) {
       setFormsEnabled(true);
       updateReviewSummary();
-      setStatus(
-        connectionStatus,
-        hasInvalidStoredReviews
-          ? 'Sebagian data lokal tidak valid dan tidak ditampilkan.'
-          : '',
-        hasInvalidStoredReviews
-      );
+      if (hasInvalidStoredReviews) {
+        setStatus(reviewStatus, 'Sebagian data lokal tidak valid dan tidak ditampilkan.', true);
+      }
     } else {
       setFormsEnabled(false);
     }
