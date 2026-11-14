@@ -200,6 +200,13 @@ a {
   font-weight: 600;
 }
 
+.original-price {
+  margin-right: 8px;
+  color: var(--page-muted);
+  font-size: 0.85em;
+  font-weight: 400;
+}
+
 .sample-price {
   display: block;
   color: var(--page-muted);
